@@ -44,6 +44,7 @@ class VwBot(SheetBots):
         'in_price_c': 'C',
         'qa_monthly_c': 'E',
         'qa_price_c': 'F',
+        'qa_done_c': 'G'
     }
 
     def update_t(self):
@@ -75,7 +76,8 @@ class VwBot(SheetBots):
                     'price': row[2].strip(),
                     'row': self.sheet_map['in_start_r'] + i,
                     'qa_monthly': False,
-                    'qa_price': False
+                    'qa_price': False,
+                    'qa_done': False
                 })
 
         # clean monthly and price
@@ -89,4 +91,4 @@ class VwBot(SheetBots):
         for car in car_data:
             self.wk.update(self.sheet_map['qa_monthly_c'] + str(car['row']), car['qa_monthly'])
             self.wk.update(self.sheet_map['qa_price_c'] + str(car['row']), car['qa_price'])
-
+            self.wk.update(self.sheet_map['qa_done_c'] + str(car['row']), car['qa_done'])
